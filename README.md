@@ -10,8 +10,8 @@
 - Tracking earned credits against specific requirements (e.g., 20 total MOOC credits required for 7th-semester substitution).
 - Generating/updating marksheets (transcripts) reflecting these substitute courses.
 - User Roles & Permissions (RBAC Model): Establish two distinct roles: Student and Faculty.  
-  > Student: Can view profile, submit courses, track credits, view past semester data, view/upload certificates, and use the chat.  
-  > Faculty (or designated SPOC/mentor): Can view pending student requests, approve/reject courses, access student records, and use the chat.
+- Student: Can view profile, submit courses, track credits, view past semester data, view/upload certificates, and use the chat.  
+- Faculty (or designated SPOC/mentor): Can view pending student requests, approve/reject courses, access student records, and use the chat.
     
 ### 2. Robust Technology Stack Selection & Initial Setup:
 *Frontend:*
