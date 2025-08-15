@@ -134,6 +134,4 @@
 - Ensure SSL certificates are active.
 - Implement monitoring, logging, and error tracking.
 - Maintain detailed technical documentation and user guides.
- regularly update detailed project documentation, including technical architecture, API specifications, database schema, and comprehensive user guides for both students and faculty. This documentation should be simple, clear, and structured with numbered sections, subheadings, sample tables, and bullet lists, similar to the provided source documents [37, 38].
---------------------------------------------------------------------------------
-This detailed roadmap, incorporating the specific features, technologies, and institutional context from the provided sources, offers a comprehensive guide for the successful implementation and launch of the FRCRCE CSE NPTEL/SWAYAM Credit Substitution Portal.
+ regularly update detailed project documentation, including technical architecture, API specifications, database schema, and comprehensive user guides for both students and faculty. This documentation should be simple, clear, and structured with numbered sections, subheadings, sample tables, and bullet lists, similar to the provided source documents.
