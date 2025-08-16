@@ -1,7 +1,5 @@
 # FRCRCE Credit Substitution Portal Roadmap
 
-![Website Flow](https://drive.google.com/uc?export=view&id=1Grh9w5jzeJSHwsRvYLt87GV10X3HURIB)
-
 ## Phase 1: In-depth Planning, Infrastructure Setup & Core Design
 
 ### 1. Detailed Project Scope & FRCRCE Specific Requirements Definition:
