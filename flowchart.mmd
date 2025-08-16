@@ -1,39 +1,41 @@
----
-config:
-  layout: dagre
----
 flowchart TD
-    A["Homepage<br>(Frontend: React + Tailwind/Bootstrap)"] --> B["Login Page<br>(Frontend: React Router Form)"]
+    A["Homepage<br>(Frontend: React + Tailwind/Bootstrap)"] --> B["Login Page<br>(Frontend: React Router Form)"] & AB["About Page<br>(React Static Page)"] & AH["Help Page<br>(React Static Page)"]
     B -- Student Role --> C["Authenticate Student<br>(Backend: Django REST API + PostgreSQL)"]
     B -- Faculty Role --> D["Authenticate Faculty<br>(Backend: Django REST API + PostgreSQL)"]
     C -- Valid --> S1["Student Dashboard<br>(Frontend: React Router, Components)"]
     C -- Invalid --> B
     D -- Valid --> F1["Faculty Dashboard<br>(Frontend: React Router, Components)"]
     D -- Invalid --> B
-    S1 --> S2["View Profile &amp; Academic Summary<br>(React Table + Django API + PostgreSQL)"] & S3["Upload Course Request<br>(React Form + File Upload)"] & S4["View Credit Status<br>(React Chart/Table + Django API + PostgreSQL)"] & S5["View Past Semesters<br>(React Table + Django API + PostgreSQL)"] & S6["Certificates<br>(React Gallery + Django API + AES Encryption in DB)"] & S7["Select Courses for Marksheet<br>(React Form + Django API + PostgreSQL)"] & S8["Chat with Faculty<br>(React Chat UI + WebSockets + Django Channels + Redis)"]
+    S1 --> S2["Profile &amp; Academic Summary<br>(React Table + Django API + PostgreSQL)"] & S3["Upload Course Request<br>(React Form + File Upload)"] & S4["Credit Status<br>(React Chart/Table + Django API + PostgreSQL)"] & S5["Past Semesters<br>(React Table + Django API + PostgreSQL)"] & S6["Certificates<br>(React Gallery + AES Encrypted DB Files)"] & S7["Marksheet Selection<br>(React Form + Django API + PostgreSQL)"] & S8["Chat with Faculty<br>(React Chat UI + WebSockets + Django Channels + Redis)"]
     S3 --> SC1["Fill Course Details Form<br>(React Form)"]
     SC1 --> SC2["Upload Certificate/Proof<br>(React File Upload + AES Encryption)"]
-    SC2 --> SC3["Submit Request - Status Pending<br>(Django REST API + PostgreSQL)"]
+    SC2 --> SC3["Submit Request - Pending<br>(Django REST API + PostgreSQL)"]
     SC3 --> F2["View Pending Requests<br>(React Table + Django API + PostgreSQL)"]
-    F1 --> F2 & F3["View Approved Courses<br>(React Table + Django API + PostgreSQL)"] & F4["Comment on Courses<br>(React Chat UI + WebSockets + Django Channels + Redis)"]
+    F1 --> F2 & F3["Approved Courses<br>(React Table + Django API + PostgreSQL)"] & F4["Comment on Courses<br>(React Chat UI + WebSockets + Django Channels + Redis)"] & F5["Admin Panel<br>(Django Admin)"]
     F2 --> FR1["Review Student Submission<br>(React Modal + Django API)"]
     FR1 --> FR2["View Uploaded Certificate<br>(AES Encrypted File from DB)"]
     FR2 -- Approve --> FR3["Update Student Credit Status<br>(Django API + PostgreSQL)"]
-    FR2 -- Reject --> FR4["Send Rejection Notification<br>(Django API + PostgreSQL)"]
+    FR2 -- Reject --> FR4["Send Rejection Notification<br>(Django API + Notifications App + PostgreSQL)"]
     FR3 --> S4 & F3
     FR4 --> S4
-    S4 --> S4a["See Approved/Pending Courses<br>(React Table + Django API + PostgreSQL)"]
+    S4 --> S4a["Approved/Pending Courses<br>(React Table + Django API + PostgreSQL)"]
     S4a --> S4b["Track Credit Progress<br>(React Chart + Django API)"]
-    S6 --> S6a["View Uploaded Certificates<br>(React Gallery + Django API + AES Encrypted DB Files)"]
-    S7 --> S7a["Choose Courses to Include<br>(React Checkbox Form + Django API)"]
+    S6 --> S6a["View Uploaded Certificates<br>(React Gallery + AES Encrypted DB Files)"]
+    S7 --> S7a["Choose Courses<br>(React Checkbox Form + Django API)"]
     S7a --> S7b["Submit Final Selection<br>(Django API + PostgreSQL)"]
     S7b --> S9["Generate PDF Marksheet<br>(Django + ReportLab/WeasyPrint)"]
     S9 --> S10["Download/Save Marksheet<br>(React Download + HTTPS)"]
-    S8 --> Chat1["Send Message to Faculty<br>(React Chat UI + WebSockets)"]
-    Chat1 --> Chat2["Faculty Receives Message<br>(Django Channels + Redis)"]
+    S8 --> Chat1["Send Message<br>(React Chat UI + WebSockets)"]
+    Chat1 --> Chat2["Faculty Receives<br>(Django Channels + Redis)"]
     F4 --> Chat4["Student Receives Comment<br>(Django Channels + Redis)"]
+    INFRA["CI/CD Pipeline<br>(GitHub Actions)"] --> BEALL["Backend + Frontend Deployment"]
+    DOCK["Containerization<br>(Docker + docker-compose)"] --> BEALL
+    BEALL --> A
+
      A:::frontend
      B:::frontend
+     AB:::frontend
+     AH:::frontend
      C:::backend
      D:::backend
      S1:::frontend
@@ -52,6 +54,7 @@ flowchart TD
      F2:::database
      F3:::database
      F4:::chat
+     F5:::backend
      FR1:::frontend
      FR2:::database
      FR3:::backend
@@ -65,8 +68,13 @@ flowchart TD
      S10:::frontend
      Chat1:::chat
      Chat2:::chat
+     Chat3:::chat
      Chat4:::chat
+     INFRA:::infra
+     BEALL:::infra
+     DOCK:::infra
     classDef frontend fill:#cce5ff,stroke:#003366,stroke-width:1px,color:#003366
     classDef backend fill:#ffe6cc,stroke:#663300,stroke-width:1px,color:#663300
     classDef database fill:#d5f5d5,stroke:#006600,stroke-width:1px,color:#004d00
     classDef chat fill:#e6ccff,stroke:#330066,stroke-width:1px,color:#330066
+    classDef infra fill:#f2f2f2,stroke:#333,stroke-width:1px,color:#333
